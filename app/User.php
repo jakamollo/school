@@ -33,6 +33,10 @@ class User extends Authenticatable
         return $this->belongsTo('App\School');
     }
 
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
+
     public function user_school(){
         $userType = $this->type();
         if($userType == 'admin'){

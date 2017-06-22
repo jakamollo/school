@@ -160,3 +160,13 @@ Route::get('home', [
     'as' => 'get_homepage',
     'uses' => 'HomeController@homepage'
 ]);
+// route to post post
+Route::post('home', [
+    'as' => 'post_post',
+    'uses' => 'PostController@post'
+]);
+//route to delete post
+Route::delete('/post/delete/{id}', [
+   'as' => 'delete_post',
+    'uses' => 'PostController@delete'
+]);

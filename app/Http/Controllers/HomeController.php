@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,8 @@ class HomeController extends Controller
     }
 
     public function homepage(){
-        return view('home.home');
+        $user_school = Auth::user()->school;
+        $posts = Post::where('school_id', $user_school->id)->orderBy('created_at', 'desc')->paginate(4);
+        return view('home.home', ['user' => Auth::user(), 'posts' => $posts]);
     }
 }

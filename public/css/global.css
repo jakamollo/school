@@ -353,12 +353,106 @@
     padding-left: 5px;
     font-family: "Times New Roman";
 }
-.homde-wrapper {
-    width: 800px;
-    height: 750px;
-    background-color: white;
-    border: 1px solid black;
+.home-left-panel {
+    width: 250px;
+    height: 710px;
+    background-color: #d7ebf9;
+    padding-top: 1px;
+    border: 1px solid grey;
 }
+.home-right-panel {
+    width: 250px;
+    height: 710px;
+    background-color: #d7ebf9;
+    float: right;
+    position: absolute;
+    top: 95px;
+    left: 840px;
+    border: 1px solid grey;
+}
+.home-header {
+    height: 35px;
+    width: 988px;
+    border: 1px solid green;
+    margin-bottom: 3px;
+    padding-left: 320px;
+    font-family: "Times New Roman";
+}
+.home-post-textarea {
+    border: 1px solid gray;
+    width: 400px;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-family: "Times New Roman";
+}
+.home-post-div {
+    position: absolute;
+    top: 95px;
+    left: 400px;
+    width: 400px;
+
+}
+.post-display-div {
+    background-color: white;
+    width: 490px;
+    height: 585px;
+    position: absolute;
+    top: 220px;
+    left: 350px;
+    border: 1px solid black;
+
+}
+.user_photo {
+    margin-top: 5px;
+}
+.home_posts_pagination {
+    margin-left: 30px;
+}
+.post_user_name {
+    float: right;
+    padding-right: 320px;
+    font-family: "Times New Roman";
+    color: #0b93d5;
+}
+.alert-no-post {
+    background-color: lightcoral;
+    height: 40px;
+    width: 490px;
+    padding-top: 5px;
+    padding-left: 50px;
+    font-family: "Times New Roman";
+    font-style: italic;
+}
+.page_link {
+    font-size: 24px;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    padding-left: 5px;
+}
+.post-body {
+    font-family: "Times New Roman";
+}
+.delete-post {
+    font-family: "Times New Roman";
+    /*background-color: lightcoral;*/
+    font-size: 13px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+
+}
+.edit-post {
+    font-family: "Times New Roman";
+    background-color: lightblue;
+    font-size: 13px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
+
+/*.post-body {*/
+    /*position: relative;*/
+    /*float: right;*/
+    /*padding-right: 290px;*/
+/*}*/
 
 
 

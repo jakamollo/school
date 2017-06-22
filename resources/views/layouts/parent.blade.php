@@ -33,7 +33,7 @@
 <script type="text/javascript" src="{{ asset('/js/tether/js/tether.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/bootstrap/js/bootstrap.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
 <script type="text/javascript" src="{{ asset('/js/global.js') }}"></script>
 {{--<script type="text/javascript" src="{{ asset('jquery-ui/external/jquery/jquery.js') }}"></script>--}}
 <script type="text/javascript" src="{{ asset('jquery-ui/jquery-ui.js') }}"></script>

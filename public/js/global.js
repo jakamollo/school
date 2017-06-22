@@ -118,5 +118,78 @@
          }
      });
 
+     // save post to the database
+     $('#post-form').on('submit', function(e){
+
+         e.preventDefault();
+         //var userData = {
+             var body = $('#post_content').val();
+             var user_id = $('#post_owner').val();
+             var attachment = $('#post_attachment').val();
+             var token = $('input[name=_token]').val();
+             var school_id = $('#post_school_id').val();
+
+         //}
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+         });
+         $.ajax({
+            type: 'POST',
+             url: 'home',
+             data: {_token: token, body: body, user_id: user_id, attachment: attachment, school_id: school_id},
+             dataType: 'json',
+             success: function(data){
+                 console.log(data)
+                 var photo = data.photo;
+                 var username = data.username;
+                 var postBody = '<div id="post_user_photo_div" class="user_photo"><img class="post_image" id="post_image" src="" height="50px" width="50px">';
+                 var appendUserName = '<p id="post_user_name" class="post_user_name" style="position: absolute; left: 100px;top: 10px; width: 100px"></p>';
+                 var postPara = '<p id="post-body" class="post-body" style="margin-left: 20px;"></p>';
+                 '</div>';
+                 // show thpost only if the post body is not empty
+                 if($('#post_content').val() !==''){
+                     $('.post-display-div').prepend(postBody,appendUserName,postPara).delay(5000,function(){
+                         $('#post_image').attr("src",photo);
+                         $('#post_user_name').text(username).css({paddingLeft:'10px',marginLeft: '10ppx', float: 'right'});
+                         $('#post-body').text(body);
+                     });
+
+                     $('#post_content').val("");
+                     var message = '<div class="post_message" style="background-color: lightgreen;height: 35px; border-radius: 5px;padding-left:5px;margin-bottom: 5px;font-family: Helvetica; font-style: italic ">Post was successfull</div>';
+                     $('.home-post-div').prepend(message).delay(5000,function(){
+                         $('.post_message').delay(5000).slideUp(3000);
+                     });
+                 }
+
+             },
+             error: function(data){
+                 console.log(data)
+             },
+         });
+     });
+
+     // delete post
+     $('.delete-post').on('click', function(){
+        // get post id
+         var id = $(this).val();
+         var _token = $(this).data('token');
+         $.ajax({
+             type: 'DELETE',
+             url: 'post/delete/'+id,
+             dataType: 'json',
+             data: {id: id, token: _token},
+             success: function(data){
+                 alert(id);
+                 console.log(data);
+                 $('#post'+id).remove();
+             },
+             error: function(resp){
+                 console.log(resp);
+             }
+         })
+     });
+
  });
 
