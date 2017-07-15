@@ -171,24 +171,122 @@
      });
 
      // delete post
-     $('.delete-post').on('click', function(){
-        // get post id
+     $('.delete-post').on('click', function(e){
+         e.preventDefault();
+        // get post id and token
          var id = $(this).val();
-         var _token = $(this).data('token');
+         var token = $('input[name=_token]').val();
+
+         $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             }
+         });
+         var confirmation = confirm("Are you sure you want to delete?");
+         if(confirmation == true){
+             $.ajax({
+                 type: 'DELETE',
+                 url: 'post/delete/'+id,
+                 dataType: 'json',
+                 data: {id: id, token: token},
+                 success: function(data){
+                     console.log(data);
+                     $('#post'+id).remove();
+                     var message = '<div class="post_message" style="background-color: lightpink;height: 35px; border-radius: 5px;padding-left:5px;margin-bottom: 5px;font-family: Helvetica; font-style: italic ">Post was successfully deleted</div>';
+                     $('.home-post-div').prepend(message).delay(5000,function(){
+                         $('.post_message').delay(5000).slideUp(3000);
+                     });
+                 },
+                 error: function(resp){
+                     console.log(resp);
+                 }
+             })
+         }
+
+     });
+
+     // edit post
+     $('.edit-post-btn').on('click', function(f){
+         f.preventDefault();
+         // get user input
+         var id = $(this).val();
+         var body = $('#edit_post_content'+id).val();
+         var user_id = $('#post-owner'+id).val();
+         var attachment = $('#post-attachment'+id).val();
+         var token = $('input[name=_token]').val();
+         var school_id = $('#post-school-id'+id).val();
+
+         $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             }
+         });
          $.ajax({
-             type: 'DELETE',
-             url: 'post/delete/'+id,
+            type: 'PATCH',
+             url: 'post/'+id,
              dataType: 'json',
-             data: {id: id, token: _token},
+             data: {id: id,body: body,user_id: user_id,attachment: attachment,token: token,school_id: school_id},
              success: function(data){
-                 alert(id);
                  console.log(data);
-                 $('#post'+id).remove();
+                 var photo = data.photo;
+                 var username = data.username;
+
+                 var user_photo_div_id = 'user_photo'+id;
+                 var user_photo_div = '<div class="user_photo" id=""></div>'
+                 var postBody = '<img class="post_image" id="post_image" src="" height="50px" width="50px">';
+                 var appendUserName = '<p id="post_user_name" class="post_user_name" style="position: relative; left: -20px;top: 10px;"></p>';
+                 var postPara = '<p id="post-body" class="post-body" style="padding-left: 15px;"></p>';
+
+
+                 if($('#edit_post_content'+id).val() !==''){
+                     // remove the modal
+                     $('#'+id).hide();
+                     $('.body').removeClass('modal-open');
+
+                     $('#user_image'+id).remove();
+                     $('#post_user_name'+id).remove();
+                     $('#post-body'+id).remove();
+                     $('#'+user_photo_div_id).prepend(postBody,appendUserName,postPara).delay(5000,function(){
+                         $('#post_image').attr("src",photo);
+                         $('#post_user_name').text(username).css({paddingLeft:'10px',marginLeft: '10ppx', float: 'right'});
+                         $('#post-body').text(body);
+                     });
+
+                     var message = '<div class="post_message" style="background-color: lightgreen;height: 35px; border-radius: 5px;padding-left:5px;margin-bottom: 5px;font-family: Helvetica; font-style: italic ">Post was successfully updated</div>';
+                     $('.home-post-div').prepend(message).delay(5000,function(){
+                         $('.post_message').delay(5000).slideUp(3000);
+                     });
+                 }
+
              },
              error: function(resp){
                  console.log(resp);
              }
          })
+     });
+
+     $('.close_modal').click(function(){
+         var id  = $(this).val();
+       $('#'+id).hide();
+     });
+
+     $('.subject-dismiss-btn').click(function(){
+         $('.subject_modal').hide();
+     });
+
+     $('.close_subj_modal').click(function(){
+         $('.subject_modal').hide();
+     });
+
+     // Packages drop-down
+     $('#form-filter').change(function(){
+         $('.hide_student').hide();
+         $('.' + $(this).val()).show();
+     });
+
+     $('#combined-filter').change(function(){
+         $('.hide_student').hide();
+         $('.' + $(this).val()).show();
      });
 
  });

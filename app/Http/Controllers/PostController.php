@@ -18,15 +18,16 @@ class PostController extends Controller
           // run validator
             $inputData = Input::all();
             $file_data = Input::get('attachment');
-            $user_id = Input::get('school_id');
+            $school_id = Input::get('school_id');
+            $user_id = Input::get('user_id');
             $this->validatePost($inputData);
             $post = new Post();
             $post->body = Input::get('body');
-            $post->user_id = Input::get('user_id');
+            $post->user_id = $user_id;
             if(isset($file_data)){
                 $post->attachment = $file_data;
             }
-            $post->school_id = $user_id;
+            $post->school_id = $school_id;
             $post->save();
             $user= User::where('id',$user_id)->first();
             $returnData = [
@@ -45,39 +46,40 @@ class PostController extends Controller
 
     }
 
-    public function delete($id, Request $request){
+    public function deletePost(Request $request,$id){
         if($request->ajax()){
-            return response()->json(Input::all());
+            $id = Input::get('id');
             Post::find($id)->delete();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            $returnData = ['message' => 'success'];
+            return response()->json($returnData);
         }
+    }
+
+    public function update(Request $request, $id){
+      if($request->ajax()){
+          // run validation rules
+          $inputData = Input::all();
+          $file_data = Input::get('attachment');
+          $school_id = Input::get('school_id');
+          $user_id = Input::get('user_id');
+          $id = Input::get('id');
+          $this->validatePost($inputData);
+          $post = Post::where('id',$id)->first();
+          $post->body = Input::get('body');
+          $post->user_id = $user_id;
+          if(isset($file_data)){
+              $post->attachment = $file_data;
+          }
+          $post->school_id = $school_id;
+          $post->save();
+          $user= User::where('id',$user_id)->first();
+          $returnData = [
+              'username' => $user->username,
+              'photo' => $user->photo,
+          ];
+          return response()->json($returnData);
+      }
+
     }
 
 

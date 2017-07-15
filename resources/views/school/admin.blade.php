@@ -34,10 +34,33 @@
                     Add Student
                 </div>
             </a>
+            <a href="#new_subject" data-toggle="modal" >
+                <div class="link-deco-div">
+                    Add Subject
+                </div>
+            </a>
 
             @include('modals.student.new', ['m' => 'new_student', 'school' => $school])
             @include('modals.school.edit', ['m' => 'edit_school', 'school' => $school])
             @include('modals.staff.new', ['m' => 'new_staff', 'school' => $school])
+            @include('modals.subject.new', ['m' => 'new_subject'])
+
+        </div>
+            <div class="navigation-tabs">
+                <ul class="nav nav-tabs">
+                    <li class="student-list active"><a href="#students_list" data-toggle="tab">List Students</a></li>
+                    <li class="staff-list"><a href="#staff_list" data-toggle="tab">List Staff</a></li>
+                </ul>
+            </div>
+        <div class="tabs-display-area">
+            <div class="tab-content clearfix">
+                <div id="students_list" class="tab-pane active">
+                    @include('school.students', ['school' => $school])
+                </div>
+                <div id="staff_list" class="tab-pane fade">
+                    @include('school.list_staff')
+                </div>
+            </div>
 
         </div>
     </div>

@@ -117,4 +117,4 @@ Update School Info
         {!! Form::close() !!}
 
     </div>
-@stop
+@overwrite

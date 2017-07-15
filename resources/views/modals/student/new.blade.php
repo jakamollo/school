@@ -45,7 +45,7 @@ Add New Student
     </div>
 
     <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-        <label for="gender" class="col-md-4 control-label">Level</label>
+        <label for="gender" class="col-md-4 control-label">Gender</label>
 
         <div class="col-md-6">
             <select name="gender" class="form-control" id="gender" required>
@@ -112,4 +112,4 @@ Add New Student
         {!! Form::close() !!}
 
     </div>
-@stop
+@overwrite

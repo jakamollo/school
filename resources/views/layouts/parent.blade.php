@@ -24,7 +24,7 @@
     <!-- Styles -->
 
 </head>
-<body>
+<body style="overflow-y: scroll;">
 @yield('school')
 </body>
 

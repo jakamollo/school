@@ -34,17 +34,23 @@
         @if(isset($posts))
             @forelse($posts as $post)
     <div class="post-content" id="post{{ $post->id }}">
-        <div class="user_photo"><img src="{{ \App\User::where('id', $post->user_id)->first()['photo'] }}" height="50px" width="50px">
-            <p class="post_user_name">{{ \App\User::where('id', $post->user_id)->first()['username'] }}</p>
-            <p class="post-body">
+        <div class="user_photo" id="user_photo{{ $post->id }}"><img id="user_image{{ $post->id }}" src="{{ \App\User::where('id', $post->user_id)->first()['photo'] }}" height="50px" width="50px">
+             <p class="post_user_name" id="post_user_name{{ $post->id }}">{{ \App\User::where('id', $post->user_id)->first()['username'] }}</p>
+            <p class="post-body" id="post-body{{ $post->id }}">
                 {{ $post->body }}
             </p>
-            <button class="btn edit-post" value="{{ $post->id }}">Edit</button>
-            <button class="btn btn-danger delete-post" value="{{ $post->id }}">Delete</button>
+            <button type="button" data-toggle="modal" data-target="#{{ $post->id }}" class="btn edit-post">Edit</button>
 
+                {!! Form::open(['route' => ['delete_post', 'id' => $post->id ],'method' => 'DELETE', 'id' => 'delete-post-form']) !!}
+                {{ csrf_field() }}
+                <input type="text" name="id" value="{{ $post->id }}" id="delete_post_id" hidden="true">
+            <button type="submit" class="btn btn-danger delete-post" value="{{ $post->id }}" >Delete</button>
+
+                {!! Form::close() !!}
         </div>
-
+        @include('modals.post.edit', ['m' => $post->id, 'post' => $post])
     </div>
+
             @empty
                 <div class="alert-no-post">
                     No posts found

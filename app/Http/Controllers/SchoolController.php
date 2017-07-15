@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\School;
+use App\Staff;
+use App\Student;
 use App\Traits\FileUploads;
 use App\User;
 use Illuminate\Http\Request;
@@ -52,7 +54,9 @@ class SchoolController extends Controller
 
     public function get_home(User $user, School $school, $id){
         $userSchool = $school->where('admin', Auth::user()->id)->first();
-        return view('school.admin', ['school' => $userSchool]);
+        $students = Student::where('school_id', $userSchool->id)->get();
+        $staff = Staff::where('school_id', $userSchool->id)->get();
+        return view('school.admin', ['school' => $userSchool, 'students' => $students, 'staff' => $staff]);
     }
 
     public function update(Request $request,School $school,FileUploads $fileUploads, $id){

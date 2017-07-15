@@ -325,7 +325,7 @@
     padding-top: 15px;
 }
 .school_nav_menus {
-    width: 450px;
+    width: 350px;
     height: 600px;
     border-radius: 5px;
     border: 1px solid black;
@@ -333,13 +333,14 @@
 }
 
 .modal-wrapper {
-    height: auto;
+
     width: 650px;
     background-color: white;
     border: 1px solid black;
     margin-left: 50px;
     margin-top: 10px;
     border-radius: 10px;
+    height: auto;
 }
 .link-deco-div {
     width: 200px;
@@ -438,6 +439,9 @@
     font-size: 13px;
     margin-bottom: 5px;
     border-radius: 6px;
+    position: relative;
+    left: 65px;
+    top: -42px;
 
 }
 .edit-post {
@@ -447,12 +451,132 @@
     margin-bottom: 5px;
     border-radius: 6px;
 }
+.edit_post_content {
+    position: relative;
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 90px;
+}
+.edit-post-btn {
+    position: relative;
+    top: 40px;
+    left: -400px;
+}
+.post-attachment {
+    position: relative;
+    left: 200px;
+}
+.tabs-display-area {
+    position: relative;
+    left: 390px;
+    top: -550px;
+    border: 1px solid black;
+    width: 550px;
+    height: auto;
+    font-family: "Times New Roman";
+    border-radius: 5px;
+}
+.student_tbl_rw_menu {
+    font-weight: bold;
+    margin-left: 10px;
+}
+.student_tbl_rw_data {
+    margin-left: 10px;
+}
+.student_tbl {
+    margin-left: 10px;
+}
+.std_tbl_data {
+    padding-right: 5px;
+}
+#form-filter {
+   margin-top: 5px;
+    margin-left: 10px;
+    width: 150px;
+    font-family: "Times New Roman";
+    margin-bottom: 5px;
+}
+#combined-filter {
+    margin-top: 5px;
+    margin-left: 10px;
+    width: 150px;
+    font-family: "Times New Roman";
+    margin-bottom: 5px;
+}
+.navigation-tabs {
+    position: relative;
+    left: 390px;
+    top: -590px;
+    border: 1px solid black;
+    width: 550px;
+    height: auto;
+    font-family: "Times New Roman";
+    border-radius: 5px;
+}
+.student-list {
+    padding-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-right: 10px;
+    display: block;
+}
+.staff-list{
+    padding-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-right: 10px;
+    display: block;
+}
+.navigation-tabs ul li:hover a {
+    background-color: grey;
+    border-bottom: 2px solid black;
+}
+.navigation-tabs ul li:active a {
+    background-color: grey;
+    border-bottom: 2px solid black;
+}
+.subject_modal {
+    border: 1px solid black;
+    height: 500px;
+    margin-left: 30px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 3px;
+    font-family: "Times New Roman";
+}
+.subject-dismiss-btn {
+    position: relative;
+    left: 750px;
+    top: -30px;
+}
+.modal_header {
+    background-color: lightskyblue;
+    width: 800px;
+    height: 50px;
+}
+.modal_header_title {
+    padding-left: 10px;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    padding-top: 10px;
 
-/*.post-body {*/
-    /*position: relative;*/
-    /*float: right;*/
-    /*padding-right: 290px;*/
-/*}*/
+}
+.subj_form_group {
+    padding-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.subj_submit_btn {
+    padding-left: 20px;
+    padding-top: 10px;
+    font-family: "Times New Roman";
+}
+.subj_close_button {
+  position: relative;
+    left: 600px;
+    top: -35px;
+    font-family: "Times New Roman";
+}
 
 
 

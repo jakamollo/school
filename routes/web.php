@@ -168,5 +168,15 @@ Route::post('home', [
 //route to delete post
 Route::delete('/post/delete/{id}', [
    'as' => 'delete_post',
-    'uses' => 'PostController@delete'
+    'uses' => 'PostController@deletePost'
+]);
+// route to update post
+Route::patch('post/{id}', [
+   'as' => 'update_post',
+    'uses' => 'PostController@update'
+]);
+// route to new subject
+Route::post('subject/new', [
+    'as' => 'new_subject',
+    'uses' => 'SubjectController@create'
 ]);
