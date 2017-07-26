@@ -6,7 +6,10 @@
                 <p class="alert-para">{{ Session::get('message') }}</p>
             </div>
         @endif
-
+     {{-- js success message --}}
+            <div class="success_message" id="success_message">
+              {{-- append the message here --}}
+            </div>
         <div class="dshbrd_school_logo_div">
             <img src="@if(isset($school->logo)) {{ $school->logo }}  @else /images/school3.png @endif" height="50px" width="50px" class="dshbrd_school_logo">
         </div>

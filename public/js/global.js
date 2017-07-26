@@ -265,6 +265,60 @@
          })
      });
 
+     // submit new subject
+     $('#new-subj-submit-btn').on('click', function(e){
+         e.preventDefault();
+         // get user inputs
+         var name = $('#new_subj_name').val();
+         var code = $('#new_subj_code').val();
+         var grading_choice = $('#new_subj_grading').find("option:selected").val();
+         var category = $('#new_subj_category').find("option:selected").val();
+         var week_length = $('#new_subj_week_length').val();
+         var token = $('input[name=_token]').val();
+
+         // validate the presence of integer for week_length field
+         if(isNaN(week_length)){
+             $('#new_subj_week_length').focus();
+             errorMessage('new_subj_week_length_error_message', 'new-subj-week-length-error', 'Please provide numeric value only');
+         }else{
+             $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
+             $.ajax({
+                 type: 'POST',
+                 url: '/subject/new',
+                 dataType: 'json',
+                 data: {token: token,name: name, code: code, grading_choice: grading_choice, category: category,week_length: week_length},
+                 success: function(data){
+                     console.log(data);
+                     $('.subject_modal').hide();
+                     successMessage('new-subj-success-submit', 'success_message', 'Subject successfully submited');
+                 },
+                 error: function(resp){
+                     console.log(resp);
+                 },
+             });
+         }
+     });
+
+     // define error message div
+     function errorMessage(message_class, parent_class, error_message){
+         var message = '<div'+' '+'class'+'='+'"'+message_class+'"'+'style="background-color: lightpink;height: 35px; border-radius: 5px;padding-left:5px;margin-bottom: 5px;font-family: Helvetica; font-style: italic ">'+error_message+'</div>';
+         $('.'+message_class).remove();
+         $('#'+parent_class).prepend(message).delay(5000,function(){
+             $('.'+message_class).delay(5000).slideUp(3000);
+         });
+     }
+     // define a success message
+     function successMessage(message_class, parent_class, error_message){
+         var message = '<div'+' '+'class'+'='+'"'+message_class+'"'+'style="background-color: lightgreen;height: 35px; border-radius: 5px;padding-left:5px;margin-bottom: 5px;font-family: Helvetica; font-style: italic ">'+error_message+'</div>';
+         $('.'+message_class).remove();
+         $('#'+parent_class).prepend(message).delay(5000,function(){
+             $('.'+message_class).delay(5000).slideUp(3000);
+         });
+     }
      $('.close_modal').click(function(){
          var id  = $(this).val();
        $('#'+id).hide();

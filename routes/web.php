@@ -176,7 +176,7 @@ Route::patch('post/{id}', [
     'uses' => 'PostController@update'
 ]);
 // route to new subject
-Route::post('subject/new', [
+Route::post('/subject/new', [
     'as' => 'new_subject',
     'uses' => 'SubjectController@create'
 ]);
