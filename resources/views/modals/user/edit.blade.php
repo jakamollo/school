@@ -13,7 +13,7 @@ Update User Info
         @endif
 
         {{ Form::label('username', 'Name:', ['class' => 'name_label']) }}
-        {{ Form::text('username', null, ['class' => 'name_input', 'id' => 'name_input']) }}<br>
+        {{ Form::text('username', null, ['class' => 'name_input', 'id' => 'name_input' ]) }}<br>
     </div>
     <div class="user-email-div">
         @if($errors->has('email'))
@@ -23,14 +23,7 @@ Update User Info
         {{ Form::label('email', 'Email Address:', ['class' => 'email_label']) }}
         {{ Form::text('email',null, ['class' => 'email_input', 'id' => 'email_input']) }}<br>
     </div>
-    <div class="user-password-div">
-        @if($errors->has('password'))
-            <div class="alert-danger">{{ $errors->first('password') }}</div>
-        @endif
 
-        {{ Form::label('password', 'Password:', ['class' => 'password_label']) }}
-        {{ Form::password('password', null, ['class' => 'password_input', 'id' => 'password_input']) }}<br>
-    </div>
     <div class="user-photo-div">
         @if($errors->has('photo'))
             @foreach($errors->get('photo') as $message)
@@ -60,6 +53,7 @@ Update User Info
     </div>
     <div class="user-submit-div">
         {{ Form::submit('Submit', ['class' => 'login_btn btn btn-primary', 'id' => 'user-update-submit-btn']) }}
+
 
     </div>
     <div class="user-form-close-div">

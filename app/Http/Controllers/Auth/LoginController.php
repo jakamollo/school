@@ -41,8 +41,6 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-//        $this->middleware('auth');
-//        $this->guard = $guard;
     }
 
     public function get_login(){
@@ -50,41 +48,16 @@ class LoginController extends Controller
     }
 
     public function post_login(Request $request, User $user){
-//         make validation rules
-//        $validator = $this->validate($request,[
-//            'email' => 'required|email',
-//            'password' => 'required'
-//        ]);
-
-
-//            get user inputs
+        # get user credentials
         $email = $request->email;
         $password = $request->password;
 
-//            check if email and password match
-        $user_exist = $user->where('email', $email)->where('password', $password)->first();
-//        if(isset($user_exist)){
-//            // get all users
-//            $users = $user->all();
-//
-//            return view('users.profile', ['user' => $user_exist]);
-//        }else{
-//            return back()->withMessage('Please check your email/password');
-//        }
         if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
-            return view('users.profile', ['user' => $user_exist]);
+            return view('users.profile', ['user' => Auth::user()]);
         }else{
             return back()->withMessage('Please check your email/password');
         }
-
-//        if (Auth::attempt(['email' => $email, 'password' => $password])) {
-//            return redirect()->route('get_profile', ['user' => $user_exist]);
-//        } else {
-//            Session::flash('message','Please check your email/password');
-//            Session::flash('flash_type','alert-danger');
-//            return back();
-//        }
     }
 
 }

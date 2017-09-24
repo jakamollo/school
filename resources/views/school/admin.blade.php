@@ -43,10 +43,10 @@
                 </div>
             </a>
 
-            @include('modals.student.new', ['m' => 'new_student', 'school' => $school])
-            @include('modals.school.edit', ['m' => 'edit_school', 'school' => $school])
-            @include('modals.staff.new', ['m' => 'new_staff', 'school' => $school])
-            @include('modals.subject.new', ['m' => 'new_subject'])
+            @include('modals.student.new', ['m' => 'new_student', 'school' => $school, 'modal_height' => 750, 'modal_width' => 700])
+            @include('modals.school.edit', ['m' => 'edit_school', 'school' => $school, 'modal_height' => 890, 'modal_width' => 800])
+            @include('modals.staff.new', ['m' => 'new_staff', 'school' => $school, 'modal_height' => 950, 'modal_width' => 700])
+            @include('modals.subject.new', ['m' => 'new_subject', 'modal_height' => 450, 'modal_width' => 700])
 
         </div>
             <div class="navigation-tabs">

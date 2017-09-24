@@ -180,3 +180,8 @@ Route::post('/subject/new', [
     'as' => 'new_subject',
     'uses' => 'SubjectController@create'
 ]);
+# Change password route
+Route::patch('user/password/change/{id}', [
+    'as' => 'change_password',
+    'uses' => 'UserController@change_password'
+]);

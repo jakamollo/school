@@ -86,19 +86,19 @@
     border-bottom: 1px solid #5e5e5e;
     font-size: 14px;
     margin-left: 100px;
-    background-color: #1d1e1f;
+    background-color: #77d5f7;
     z-index: 1;
 }
 .nav-ul li {
     list-style: none;
     float: left;
-
 }
 .nav-ul li a {
     display: block;
     padding: 3px 8px;
     /*color: #5e5e5e;*/
     text-decoration: none;
+    color: black;
 }
 .nav-ul li ul {
     display: none;
@@ -256,7 +256,7 @@
     border: 1px solid black;
 }
 .modal_title {
-    width: 650px;
+    width: 850px;
     background-color: #5cb3fd;
     height: 40px;
 }
@@ -333,14 +333,12 @@
 }
 
 .modal-wrapper {
-
-    width: 650px;
-    background-color: white;
     border: 1px solid black;
-    margin-left: 50px;
+    /*height: 650px;*/
+    margin-left: 30px;
     margin-top: 10px;
-    border-radius: 10px;
-    height: auto;
+    background-color: white;
+    border-radius: 3px;
 }
 .link-deco-div {
     width: 200px;
@@ -576,6 +574,14 @@
     left: 600px;
     top: -35px;
     font-family: "Times New Roman";
+}
+.edit-user-dismiss-btn {
+    position: relative;
+    left: 750px;
+    top: -30px;
+}
+#update_user_form {
+    margin-top: 10px;
 }
 
 

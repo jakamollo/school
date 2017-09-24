@@ -48,7 +48,7 @@
 
                 {!! Form::close() !!}
         </div>
-        @include('modals.post.edit', ['m' => $post->id, 'post' => $post])
+        @include('modals.post.edit', ['m' => $post->id, 'post' => $post, 'modal_height' => 290, 'modal_width' => 600])
     </div>
 
             @empty

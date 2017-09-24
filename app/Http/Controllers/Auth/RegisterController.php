@@ -82,28 +82,20 @@ class RegisterController extends Controller
             'gender' => 'required',
         ]);
 
-
-        $email = $request->email;
-//        check if there is a user with the email above
-        $existed_user = User::where('email', $email)->first();
-        if(isset($existed_user)){
-            return redirect()->back()->withMessage('The email already exist!')->withInput();
-        }else{
             $user = new User();
             $user->username = $request->username;
-            $user->email = $email;
+            $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $fileUploads->photoUpload($request, 'photo', $user );
             $user->type = $request->type;
             $user->gender = $request->gender;
             $user->confirmed = $request->confirmed;
             $user->save();
-//              get the just signed in user
-            $signed_up_user = User::where('email', $email)->first();
+
             Session::flash('message', 'Signed up successfully');
             Session::flash('flash_type', 'alert-success');
             return redirect()->action('Auth\LoginController@showLoginForm');
-        }
+
     }
 
     public function get_signup(){

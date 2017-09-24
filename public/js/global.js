@@ -4,7 +4,7 @@
 //   })
 //});
  $(document).ready(function($){
-    $('#update_user_formjj').submit(function(e){
+    $('.user-update-submit-btns').on('click', function(e){
 
         //    stop normal form behavior
         e.preventDefault();
@@ -14,28 +14,36 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+        //    user id
+        var user_id = $(this).val();
 
+        var username = $('#name_input').val();
+        var email = $('#email_input').val();
+        var password = $('#password').val();
+        var gender = $('.male_input').val();
+        var image_file = document.getElementById('photo');
+        var photo = image_file.files[0];
+        var form_data = new FormData();
+         //add the data to the formData
+        form_data['user_id'] = user_id;
+        form_data['username'] = username;
+        form_data['email'] = email;
+        form_data['password'] = password;
+        form_data['gender'] = gender;
+        form_data['photo'] = photo;
 
-    //    data from the form
-        var userData = {
-            name: $('#name_input').val(),
-            email: $('#email_input').val(),
-            password: $('#password_input').val(),
-            photo: $('#photo_input').val(),
-            gender: $('.male_input').val(),
-        }
-    //    user id
-        var user_id = $('#user_id_input').val();
-
+        //alert(form_data);
         $.ajax({
             type: 'PATCH',
-            async: true,
-            url: 'user/'+user_id ,
-            data: {id: user_id},
-            dataType: 'json',
-            success: function(user_data){
-                console.log(user_data);
-                $('#update-user-flash-message').append(user_data.message);
+            //async: true,
+            url: 'user_update' ,
+            data: form_data,
+            dataType: false,
+            contentType: 'text',
+            processData: false,
+            success: function(data){
+                console.log(data);
+                $('#update-user-flash-message').append(data.message);
                 $('#update_user_flash_message_div').delay(8000).fadeOut(8000);
                 $('#profile_modal').delay(1200).modal('hide');
 

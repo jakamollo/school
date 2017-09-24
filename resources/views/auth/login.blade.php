@@ -6,12 +6,17 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
+                {{-- Display validation errors --}}
+                @if(count($errors) > 0)
+                    @foreach($errors->all() as $error)
+                        <p class="alert-danger">{{ $error }}</p>
+                    @endforeach
+                @endif
+                {{-- Display session message or data --}}
                 @if ( Session::has('message') )
-
-                    <div id="alert_div" class="alert {{ Session::get('flash_type') }}">
-                        <p class="alert-para">{{ Session::get('message') }}</p>
+                    <div id="alert_div" class="alert-{{ Session::get('flash_type') }}">
+                        {{ Session::get('message') }}
                     </div>
-
                 @endif
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ action('Auth\LoginController@login') }}">
